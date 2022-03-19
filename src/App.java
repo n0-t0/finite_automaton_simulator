@@ -156,6 +156,7 @@ public class App {
         
     }
 
+    // StringのMapを展開してインスタンスを生成した後入れ直す
     public static Map<Node, Map<Char, Node>> getGraph(Map<String, Map<String, String>> strRule) {
         // 戻り値
         Map<Node, Map<Char, Node>> transRule = new HashMap<>();
