@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -45,8 +46,15 @@ public class App {
             System.exit(1);
         }
 
-        ObjectMapper mapper = new ObjectMapper();
-        JsonReceiver rule = mapper.readValue(new File(path), new TypeReference<JsonReceiver>(){});
+        JsonReceiver rule = null;
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            rule = mapper.readValue(new File(path), new TypeReference<JsonReceiver>(){});
+        } catch (JsonParseException e) {
+            System.out.println("Jsonに問題があります");
+            e.printStackTrace();
+        }
+        
 
 
         // jsonから読んだプロパティを確認
